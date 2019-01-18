@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FaceMouse : MonoBehaviour {
+
+
+	void Update () 
+    {
+        faceMouse();
+	}
+
+    void faceMouse()
+    {
+        Vector3 MousePosition = Input.mousePosition;
+        MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+
+        Vector2 direction = new Vector2(
+            MousePosition.x - transform.position.x,
+            MousePosition.y - transform.position.y
+            );
+
+        transform.up = direction;
+    }
+}
