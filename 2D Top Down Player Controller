@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour {
+
+    public Rigidbody2D rb;
+
+    public float Speed;
+    public float JumpForce;
+    public float ResetTime;
+    private float timer;
+
+    void Start()
+    {
+        timer = 0;
+    }
+
+    void Update () 
+    {
+        timer -= Time.deltaTime;
+        MovePlayer();
+    }
+  
+  void MovePlayer()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(Vector3.up * Speed * Time.deltaTime, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (timer < 0)
+                {
+                    rb.AddForce(Vector3.up * JumpForce * Time.deltaTime * 100, ForceMode2D.Impulse);
+                    timer = ResetTime;
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(-Vector3.right * Speed * Time.deltaTime, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (timer < 0)
+                {
+                    rb.AddForce(-Vector3.right * JumpForce * Time.deltaTime * 100, ForceMode2D.Impulse);
+                    timer = ResetTime;
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(-Vector3.up * Speed * Time.deltaTime, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (timer < 0)
+                {
+                    rb.AddForce(-Vector3.up * JumpForce * Time.deltaTime * 100, ForceMode2D.Impulse);
+                    timer = ResetTime;
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(Vector3.right * Speed * Time.deltaTime, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (timer < 0)
+                {
+                    rb.AddForce(Vector3.right * JumpForce * Time.deltaTime * 100, ForceMode2D.Impulse);
+                    timer = ResetTime;
+                }
+            }
+        }
+    }
+}
